@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07101d">
+<title>Carteira Micro EGI 3x V4.6 Render — Interesse do Mercado</title>
+<style>
+:root{
+ --bg:#07101d;--card:#0e1a2b;--card2:#101e31;--line:#263a55;
+ --txt:#edf5ff;--muted:#9db0c9;--g:#35d07f;--y:#ffc857;--r:#ff667a;--b:#58a8ff
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#07101d,#0a1727 48%,#07101d);color:var(--txt);
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:12px}
+header{position:sticky;top:0;z-index:20;background:rgba(7,16,29,.95);backdrop-filter:blur(8px);
+border-bottom:1px solid var(--line);padding:10px 0}
+h1{font-size:1.28rem;margin:0}.sub{font-size:.82rem;color:var(--muted);margin-top:4px}
+
+.navTop{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.navTop select{width:auto;min-width:220px;background:#091525;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:10px}
+.navTop button{white-space:nowrap}
+@media(max-width:620px){
+ .navTop select{width:100%;min-width:0}
+ .navTop button{flex:1}
+}
+
+.card,.asset{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px;margin-top:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;gap:9px}
+.topDash{grid-template-columns:repeat(2,1fr);margin-top:10px}
+@media(min-width:760px){.topDash{grid-template-columns:repeat(6,1fr)}}
+.dash{background:var(--card2);border:1px solid var(--line);border-radius:13px;padding:11px;min-height:76px}
+.dash small{color:var(--muted);font-size:.73rem}.dash strong{display:block;margin-top:4px;font-size:1.1rem}
+.dash.good{border-color:#256746}.dash.warn{border-color:#745d1b}.dash.bad{border-color:#7a2d39}
+.settings{grid-template-columns:repeat(2,1fr)}
+@media(min-width:820px){.settings{grid-template-columns:repeat(6,1fr)}}
+label{display:block;color:var(--muted);font-size:.77rem;margin-bottom:4px}
+input,select,textarea{width:100%;background:#091525;color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:9px;font:inherit}
+button{border:0;border-radius:10px;padding:10px 12px;font:inherit;font-weight:800;cursor:pointer}
+button:disabled{opacity:.45}.btn{background:var(--b);color:#06111f}.btn2{background:#172942;color:var(--txt);border:1px solid var(--line)}
+.btnDanger{background:#35161c;color:#ffd4da;border:1px solid #6b2a35}
+.statusline{margin-top:8px;padding:8px 10px;border-radius:10px;background:#091525;border:1px solid var(--line);font-size:.79rem;color:var(--muted)}
+.assetHead{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.ticker{font-size:1.15rem;font-weight:900}.price{font-size:1.03rem;font-weight:900;color:#cfe6ff}
+.badge{padding:5px 9px;border-radius:99px;font-size:.72rem;font-weight:900;border:1px solid}
+.ok{color:#aaf4ca;background:#0c2d1d;border-color:#276c48}.wait{color:#ffe8a9;background:#342708;border-color:#755b17}
+.block{color:#ffd0d6;background:#351319;border-color:#7b2c3a}.info{color:#cfe6ff;background:#10263d;border-color:#315d87}
+.assetGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+@media(min-width:880px){.assetGrid{grid-template-columns:repeat(7,1fr)}}
+.checks{display:grid;grid-template-columns:1fr;gap:7px;margin-top:10px}
+@media(min-width:740px){.checks{grid-template-columns:repeat(2,1fr)}}
+.check{display:flex;gap:8px;align-items:center;background:#091525;border:1px solid var(--line);padding:8px;border-radius:9px;border-left:3px solid var(--b)}
+.check input{width:auto}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+@media(min-width:820px){.stats{grid-template-columns:repeat(7,1fr)}}
+.holderStats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(min-width:820px){.holderStats{grid-template-columns:repeat(4,1fr)}}
+.holderNote{margin-top:7px;font-size:.73rem;color:var(--muted)}
+.interestGrid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+@media(min-width:760px){.interestGrid{grid-template-columns:repeat(2,1fr)}}
+.interestItem{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px}
+.interestItem.top{border-color:#28724b;box-shadow:0 0 0 1px rgba(53,208,127,.08) inset}
+.interestHead{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.interestScore{font-weight:900;font-size:1.05rem}
+.interestMeta{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;color:var(--muted);font-size:.76rem}
+.interestBar{height:7px;background:#08121f;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-top:8px}
+.interestFill{height:100%;background:linear-gradient(90deg,#58a8ff,#35d07f);width:0}
+.marketStats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(min-width:820px){.marketStats{grid-template-columns:repeat(5,1fr)}}
+.infoBanner{margin-top:9px;padding:9px 10px;border-radius:10px;background:#0d2238;border:1px solid #315d87;color:#cfe6ff;font-size:.78rem;line-height:1.4}
+
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:9px}
+.stat small{font-size:.75rem;color:var(--muted)}.stat strong{display:block;margin-top:3px}
+.note{font-size:.8rem;color:var(--muted);line-height:1.45}
+.log{max-height:280px;overflow:auto;background:#071321;border:1px solid var(--line);border-radius:12px;padding:9px;
+font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.75rem;white-space:pre-wrap}
+textarea{min-height:300px;margin-top:9px;resize:vertical}
+
+.modalBack{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:999;padding:14px}
+.modalBack.show{display:flex}
+.modalBox{width:min(720px,100%);max-height:88vh;overflow:auto;background:#0e1a2b;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.modalBox h2{margin:0 0 8px;font-size:1.15rem}
+.potScore{font-size:1.35rem;font-weight:900;margin:8px 0}
+.potGrid{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:700px){.potGrid{grid-template-columns:1fr 1fr}}
+.potBlock{background:#091525;border:1px solid var(--line);border-radius:11px;padding:10px}
+.potBlock b{display:block;margin-bottom:5px}
+.potBlock ul{margin:5px 0 0 18px;padding:0}
+.potBlock li{margin:4px 0}
+
+footer{padding:22px 4px 36px;color:var(--muted);font-size:.75rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <h1>🧭 Carteira Micro EGI 3x — V4.6.1 RENDER</h1>
+ <div class="sub">Backend Render • MEXC Futures 15m/1h/4h • Interesse do Mercado • holders on-chain • gestão de risco • ntfy • relatório GPT</div>
+ <div class="navTop">
+   <select id="indexMenu" aria-label="Abrir Index">
+     <option value="index0.html">Index0 — SetupDT Light</option>
+     <option value="index1.html">Index1 — Editor de Texto</option>
+     <option value="index2.html">Index2</option>
+     <option value="index3.html">Index3</option>
+     <option value="index4.html">Index4</option>
+     <option value="index5.html">Index5</option>
+     <option value="index6.html">Index6</option>
+     <option value="index7.html">Index7</option>
+     <option value="index8.html">Index8</option>
+     <option value="index9.html">Index9</option>
+     <option value="index10.html">Index10</option>
+     <option value="index11.html">Index11</option>
+     <option value="index12.html">Index12</option>
+     <option value="index13.html">Index13</option>
+     <option value="index14.html">Index14</option>
+     <option value="index15.html">Index15</option>
+     <option value="index16.html">Index16</option>
+     <option value="index17.html">Index17</option>
+     <option value="index18.html">Index18</option>
+     <option value="index19.html">Index19</option>
+     <option value="index20.html">Index20</option>
+   </select>
+   <button class="btn2" onclick="openSelectedIndex()">📂 Abrir Index</button>
+ </div>
+</header>
+
+<section class="card">
+ <b>📊 Painel da Carteira</b>
+ <div class="grid topDash">
+  <div class="dash"><small>Capital</small><strong id="dCapital">-</strong></div>
+  <div class="dash"><small>Reserva</small><strong id="dReserve">-</strong></div>
+  <div class="dash"><small>Margem usada</small><strong id="dMargin">-</strong></div>
+  <div class="dash"><small>Exposição total</small><strong id="dExposure">-</strong></div>
+  <div class="dash"><small>Risco total estimado</small><strong id="dRisk">-</strong></div>
+  <div class="dash"><small>Moedas liberadas</small><strong id="dReleased">0</strong></div>
+ </div>
+</section>
+
+<section class="card">
+ <div class="row" style="justify-content:space-between">
+  <b>👥 Interesse do Mercado</b>
+  <span class="note">Ranking complementar — não libera compra sozinho.</span>
+ </div>
+ <div class="infoBanner">ℹ️ “Procura” é estimada por atividade real de negociação: valor negociado em 24h, aceleração do volume e liquidez/spread. A MEXC não informa o número de pessoas únicas negociando. Holders = carteiras on-chain quando a fonte estiver configurada.</div>
+ <div id="interestRanking" class="interestGrid"><div class="note">Toque em <b>Atualizar Tudo Agora</b> para preencher o ranking.</div></div>
+</section>
+
+<section class="card">
+ <b>Configuração</b>
+ <div class="grid settings" style="margin-top:10px">
+  <div><label>Capital USDT</label><input id="capital" type="number" value="1000"></div>
+  <div><label>Alavancagem</label><select id="lev"><option>1</option><option>2</option><option selected>3</option></select></div>
+  <div><label>Reserva mínima %</label><input id="reservePct" type="number" value="50"></div>
+  <div><label>Risco máx./trade %</label><input id="riskPct" type="number" value="1" step=".1"></div>
+  <div><label>Máx. posições abertas</label><input id="maxOpen" type="number" value="2"></div>
+  <div><label>Atualização automática</label>
+   <select id="autoSec"><option value="30">30 s</option><option value="60" selected>1 min</option><option value="120">2 min</option><option value="300">5 min</option><option value="0">Parado</option></select>
+  </div>
+ </div>
+ <div class="grid settings" style="margin-top:10px">
+  <div style="grid-column:span 3"><label>URL do backend Render</label><input id="backendUrl" placeholder="Em branco quando aberto no próprio Render"></div>
+  <div style="grid-column:span 2"><label>Tópico ntfy (opcional se configurado no Render)</label><input id="ntfyTopic" placeholder="ex.: egi-micro-xxxxx"></div>
+  <div><label>Prioridade ntfy</label><select id="ntfyPriority"><option value="3">Normal</option><option value="4" selected>Alta</option><option value="5">Urgente</option></select></div>
+ </div>
+ <div class="row" style="margin-top:10px">
+  <button class="btn" id="scanBtn" onclick="scanAll(true)">🔄 Atualizar Tudo Agora</button>
+  <button class="btn2" onclick="testBackend()">🧪 Testar Render</button>
+  <button class="btn2" onclick="testNtfy()">🔔 Testar ntfy</button>
+ </div>
+ <div class="statusline" id="apiStatus">Aguardando teste do backend.</div>
+</section>
+
+<div id="assets"></div>
+
+<section class="card">
+ <b>🧾 Descrição dos feitos / ações automáticas</b>
+ <div id="eventLog" class="log" style="margin-top:9px">Sem eventos ainda.</div>
+</section>
+
+<section class="card">
+ <div class="row">
+  <button class="btn" onclick="generateReport()">📋 Gerar Relatório GPT</button>
+  <button class="btn2" onclick="copyReport()">📑 Copiar</button>
+  <button class="btn2" onclick="shareReport()">↗ Compartilhar</button>
+  <button class="btn2" onclick="saveAll(true)">💾 Salvar</button>
+ </div>
+ <textarea id="report"></textarea>
+</section>
+
+
+<div class="modalBack" id="potentialModal" onclick="if(event.target===this)closePotential()">
+  <div class="modalBox">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="potTitle">Potencial</h2>
+      <button class="btn2" onclick="closePotential()">✕ Fechar</button>
+    </div>
+    <div id="potBody"></div>
+  </div>
+</div>
+
+<footer>O app automatiza análise e alertas, mas não envia ordens para a corretora.</footer>
+</div>
+
+<script>
+const VERSION="V4.6 RENDER + PROJETO + TÉCNICO MEXC + INTERESSE DO MERCADO + HOLDERS ON-CHAIN";
+const defaults=[{ticker:"BTCUSDT",margin:0,reference:true,status:"REFERÊNCIA"},{ticker:"B3USDT",margin:150},{ticker:"NILUSDT",margin:130},{ticker:"SAGAUSDT",margin:120},{ticker:"ACUUSDT",margin:100}];
+const checklist=[
+ "15m deu gatilho LONG recente","1h confirma a direção","4h não está fortemente contra",
+ "RSI 15m entre 45 e 65","MACD 15m confirma","MME 9 acima da MME 14 no 15m",
+ "Volume 15m confirma (≥ média 20)","Preço não está esticado da MME 9"
+];
+const PROJECT_INFO={
+ "B3USDT":{
+   name:"B3",
+   sector:"Gaming / infraestrutura Web3 sobre Base",
+   thesis:"Infraestrutura voltada a jogos e aplicações Web3. O potencial vem da expansão do ecossistema de games on-chain, crescimento de usuários e maior uso da infraestrutura.",
+   why:"Pode ganhar relevância se aumentar adoção por jogos, atividade de usuários e liquidez do token.",
+   risks:"Microcap, alta volatilidade, dependência de adoção real do ecossistema e risco de diluição/tokenomics.",
+   watch:"Usuários/atividade, volume, novas integrações, tokenomics e desbloqueios."
+ },
+ "NILUSDT":{
+   name:"NIL",
+   sector:"Privacidade / computação e dados para IA e blockchain",
+   thesis:"Projeto ligado a processamento e armazenamento de dados com foco em privacidade. O potencial depende de adoção por aplicações que precisem trabalhar com dados de forma segura.",
+   why:"Pode se beneficiar se privacidade, IA e computação verificável ganharem adoção prática.",
+   risks:"Tecnologia complexa, concorrência forte, necessidade de adoção real e volatilidade elevada.",
+   watch:"Parcerias, atividade de rede, desenvolvedores, volume, tokenomics e entregas técnicas."
+ },
+ "SAGAUSDT":{
+   name:"SAGA",
+   sector:"Layer 1 / infraestrutura para aplicações e Chainlets",
+   thesis:"Infraestrutura para lançamento de cadeias/aplicações dedicadas. O potencial depende da expansão do número de aplicações e da utilização das Chainlets.",
+   why:"Pode ganhar valor se a infraestrutura for usada por mais jogos, apps e protocolos.",
+   risks:"Concorrência entre L1/L2, necessidade de uso real, emissão/tokenomics e forte volatilidade.",
+   watch:"Chainlets ativas, projetos integrados, atividade, receita/uso da rede e desbloqueios."
+ },
+ "ACUUSDT":{
+   name:"ACU",
+   sector:"DePIN / computação descentralizada",
+   thesis:"Tese ligada ao uso de recursos computacionais distribuídos, inclusive dispositivos como smartphones. O potencial depende de transformar capacidade ociosa em demanda real por computação.",
+   why:"Pode se beneficiar do crescimento de DePIN e demanda por computação distribuída.",
+   risks:"Liquidez menor, execução do modelo econômico, competição e necessidade de demanda real por computação.",
+   watch:"Demanda, nós/dispositivos ativos, receita/uso, liquidez, parcerias e tokenomics."
+ }
+};
+
+let stored=JSON.parse(localStorage.getItem("microEgiV3Data")||"null");
+let data=(stored||defaults).map(x=>({...x,
+ reference:!!x.reference || x.ticker==="BTCUSDT", entry:x.entry||"",stop:x.stop||"",status:(x.reference||x.ticker==="BTCUSDT")?"REFERÊNCIA":(x.status||"CANDIDATA"),open:(x.reference||x.ticker==="BTCUSDT")?false:!!x.open,
+ c:Array.isArray(x.c)?x.c:Array(8).fill(false),marketPrice:x.marketPrice||null,
+ autoStop:x.autoStop||null,tech:x.tech||null,currentState:x.currentState||"SEM LEITURA",lastScan:x.lastScan||null,
+ holders:x.holders||null,holdersSupported:x.holdersSupported!==false,market:x.market||null,interest:x.interest||null
+}));
+let events=JSON.parse(localStorage.getItem("microEgiV3Events")||"[]");
+let holderHistory=JSON.parse(localStorage.getItem("microEgiHolderHistory")||"{}");
+let timer=null,scanning=false;
+
+const $=id=>document.getElementById(id);
+const num=v=>Number(v)||0;
+const money=v=>isFinite(Number(v))?"US$ "+Number(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):"-";
+const fmt=(v,d=6)=>!isFinite(Number(v))?"-":Number(v).toLocaleString("pt-BR",{minimumFractionDigits:Number(v)<1?4:2,maximumFractionDigits:d});
+const ts=()=>new Date().toLocaleString("pt-BR");
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+
+function cfg(){
+ return {
+  capital:num($("capital").value),lev:num($("lev").value),reservePct:num($("reservePct").value),
+  riskPct:num($("riskPct").value),maxOpen:num($("maxOpen").value),autoSec:num($("autoSec").value),
+  backendUrl:$("backendUrl").value.trim().replace(/\/+$/,""),
+  ntfyTopic:$("ntfyTopic").value.trim(),ntfyPriority:num($("ntfyPriority").value)
+ };
+}
+function api(path){const b=cfg().backendUrl;return (b||"")+path}
+function mexcSymbol(t){let s=String(t).toUpperCase().replace(/[^A-Z0-9_]/g,"");if(s.includes("_"))return s;if(s.endsWith("USDT"))return s.slice(0,-4)+"_USDT";return s+"_USDT"}
+function holderGrowthText(h){
+ if(!h||!Number.isFinite(Number(h.count)))return "--";
+ if(h.growthCount===null||h.growthCount===undefined)return "Base criada";
+ const d=Number(h.growthCount),pct=Number(h.growthPct),sign=d>0?"+":"";
+ const period=Number(h.periodHours)>=20?"24h":`~${Math.max(1,Math.round(Number(h.periodHours)||0))}h`;
+ return `${sign}${d.toLocaleString("pt-BR")} (${sign}${pct.toFixed(2)}%) / ${period}`
+}
+function holderUpdatedText(h){return h&&h.checkedAt?new Date(h.checkedAt).toLocaleString("pt-BR"):"--"}
+
+const hasNum=v=>v!==null&&v!==undefined&&v!==""&&Number.isFinite(Number(v));
+const nOrNull=v=>hasNum(v)?Number(v):null;
+const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,Number(v)));
+const compactUSD=v=>!hasNum(v)?"--":new Intl.NumberFormat("pt-BR",{style:"currency",currency:"USD",notation:"compact",maximumFractionDigits:1}).format(Number(v));
+const compactNum=v=>!hasNum(v)?"--":new Intl.NumberFormat("pt-BR",{notation:"compact",maximumFractionDigits:1}).format(Number(v));
+function interestLabel(score){
+ if(!hasNum(score))return {text:"SEM DADOS",cls:"info",emoji:"⚪"};
+ score=Number(score);
+ if(score>=80)return {text:"MUITO ALTO",cls:"ok",emoji:"🔥"};
+ if(score>=65)return {text:"ALTO",cls:"ok",emoji:"🟢"};
+ if(score>=45)return {text:"MÉDIO",cls:"wait",emoji:"🟡"};
+ return {text:"BAIXO",cls:"block",emoji:"🔴"};
+}
+function rankScore(values,value){
+ const a=values.map(Number).filter(Number.isFinite).sort((x,y)=>x-y);
+ if(!hasNum(value)||!a.length)return null;value=Number(value);
+ if(a.length===1)return 70;
+ const below=a.filter(x=>x<value).length, equal=a.filter(x=>x===value).length;
+ const pos=below+(equal-1)/2;
+ return 20+80*(pos/(a.length-1));
+}
+function spreadQuality(pct){
+ if(!hasNum(pct))return null;pct=Number(pct);
+ if(pct<=0.05)return 100;if(pct<=0.10)return 90;if(pct<=0.25)return 75;if(pct<=0.50)return 55;if(pct<=1)return 35;return 15;
+}
+function holderBaseScore(count){
+ count=Number(count);if(!Number.isFinite(count)||count<=0)return null;
+ return clamp((Math.log10(count)-1)*20);
+}
+function holderGrowthScore(pct){
+ pct=Number(pct);if(!Number.isFinite(pct))return null;
+ return clamp(50+pct*15);
+}
+function recomputeInterest(){
+ const coins=data.filter(x=>!x.reference);
+ const amounts=coins.map(x=>x.market&&Number(x.market.amount24)).filter(Number.isFinite);
+ coins.forEach(a=>{
+   const parts=[];
+   const add=(name,val,w)=>{if(hasNum(val)&&w>0)parts.push({name,val:clamp(val),w})};
+   add("Volume 24h",rankScore(amounts,a.market&&a.market.amount24),40);
+   add("Aceleração",a.tech&&Number.isFinite(Number(a.tech.volRatio))?clamp(Number(a.tech.volRatio)*50):null,25);
+   add("Liquidez",spreadQuality(a.market&&a.market.spreadPct),15);
+   add("Holders",holderBaseScore(a.holders&&a.holders.count),10);
+   add("Crescimento holders",a.holders&&a.holders.growthPct!==null&&a.holders.growthPct!==undefined?holderGrowthScore(a.holders.growthPct):null,5);
+   add("Distribuição",a.holders&&Number.isFinite(Number(a.holders.top10Pct))?clamp(100-Number(a.holders.top10Pct)):null,5);
+   const w=parts.reduce((t,x)=>t+x.w,0),score=w?parts.reduce((t,x)=>t+x.val*x.w,0)/w:null;
+   a.interest={score:score===null?null:Math.round(score),parts,updatedAt:Date.now()};
+ });
+}
+function renderInterestPanel(){
+ const box=$("interestRanking");if(!box)return;recomputeInterest();
+ const coins=data.filter(x=>!x.reference).slice().sort((a,b)=>(Number(b.interest&&b.interest.score)||-1)-(Number(a.interest&&a.interest.score)||-1));
+ if(!coins.length){box.innerHTML='<div class="note">Nenhuma microcap cadastrada.</div>';return}
+ box.innerHTML=coins.map((a,idx)=>{
+   const sc=a.interest&&hasNum(a.interest.score)?Number(a.interest.score):null,l=interestLabel(sc);
+   const amount=a.market?compactUSD(a.market.amount24):"--";
+   const volr=a.tech&&Number.isFinite(Number(a.tech.volRatio))?fmt(a.tech.volRatio,2)+"x":"--";
+   const holders=a.holders&&Number.isFinite(Number(a.holders.count))?Number(a.holders.count).toLocaleString("pt-BR"):(a.holdersSupported===false?"n/d":"--");
+   const spread=a.market&&hasNum(a.market.spreadPct)?fmt(a.market.spreadPct,3)+"%":"--";
+   return `<div class="interestItem ${idx===0&&sc!==null?'top':''}"><div class="interestHead"><div><b>${idx+1}º ${esc(a.ticker)}</b> ${idx===0&&sc!==null?'🏆':''}</div><span class="badge ${l.cls}">${l.emoji} ${sc===null?'--':sc+'/100'} • ${l.text}</span></div><div class="interestMeta"><span>👥 Holders ${holders}</span><span>💵 24h ${amount}</span><span>📊 Vol/Média ${volr}</span><span>💧 Spread ${spread}</span></div><div class="interestBar"><div class="interestFill" style="width:${sc===null?0:sc}%"></div></div></div>`
+ }).join("");
+}
+
+function addEvent(msg,material=false){
+ events.unshift({time:ts(),msg,material});events=events.slice(0,100);
+ localStorage.setItem("microEgiV3Events",JSON.stringify(events));renderEvents()
+}
+function renderEvents(){$("eventLog").textContent=events.length?events.map(e=>`${e.material?"★":"•"} [${e.time}] ${e.msg}`).join("\n"):"Sem eventos ainda."}
+
+function render(){
+ $("assets").innerHTML="";
+ data.forEach((a,i)=>{
+  const sec=document.createElement("section");sec.className="asset";
+  sec.innerHTML=`
+  <div class="assetHead">
+   <div class="row"><span class="ticker">${esc(a.ticker)}</span><span class="price">${a.marketPrice?"$ "+fmt(a.marketPrice):"cotação --"}</span>
+   ${a.reference?'<span class="badge info">REFERÊNCIA BTC</span>':''}<span class="badge info" id="badge${i}">${esc(a.currentState)}</span></div>
+   <div class="row"><button class="btn2" onclick="scanOne(${i},true)">Atualizar</button><button class="btn2" onclick="${a.reference?`showBtcContext(${i})`:`showPotential(${i})`}">${a.reference?"🧭 Contexto BTC":"💡 Potencial / Por que comprar?"}</button>${a.reference?"":`<button class="btn2" onclick="showInterest(${i})">👥 Interesse</button><button class="btn2" onclick="toggleOpen(${i})">${a.open?"Fechar posição":"Marcar aberta"}</button><button class="btnDanger" onclick="removeAsset(${i})">Remover</button>`}</div>
+  </div>
+  <div class="assetGrid">
+   <div><label>Ativo</label><input value="${esc(a.ticker)}" oninput="upd(${i},'ticker',this.value.toUpperCase())"></div>
+   <div><label>${a.reference?"Função":"Margem planejada"}</label>${a.reference?'<input value="REFERÊNCIA DO MERCADO" readonly>':`<input type="number" value="${a.margin}" oninput="upd(${i},'margin',this.value)">`}</div>
+   <div><label>Entrada manual</label><input type="number" step="any" value="${esc(a.entry)}" ${a.reference?"readonly":`oninput="upd(${i},'entry',this.value)"`}></div>
+   <div><label>Stop manual</label><input type="number" step="any" value="${esc(a.stop)}" ${a.reference?"readonly":`oninput="upd(${i},'stop',this.value)"`}></div>
+   <div><label>Stop estrutural auto</label><input value="${a.autoStop?fmt(a.autoStop):"-"}" readonly></div>
+   <div><label>Status</label>${a.reference?'<input value="REFERÊNCIA BTC" readonly>':`<select onchange="upd(${i},'status',this.value)"><option ${a.status==="CANDIDATA"?"selected":""}>CANDIDATA</option><option ${a.status==="OBSERVAR"?"selected":""}>OBSERVAR</option><option ${a.status==="DESCARTAR"?"selected":""}>DESCARTAR</option></select>`}</div>
+   <div><label>Última leitura</label><input value="${a.lastScan?new Date(a.lastScan).toLocaleTimeString("pt-BR"):"--"}" readonly></div>
+  </div>
+  <div class="checks">${checklist.map((x,j)=>`<label class="check"><input type="checkbox" ${a.c[j]?"checked":""} disabled><span>${a.c[j]?"✅":"⬜"} ${x}</span></label>`).join("")}</div>
+  <div class="stats">
+   <div class="stat"><small>Checklist</small><strong id="score${i}">-</strong></div>
+   <div class="stat"><small>RSI 15m</small><strong>${a.tech?fmt(a.tech.rsi15,2):"-"}</strong></div>
+   <div class="stat"><small>Vol/Média</small><strong>${a.tech?fmt(a.tech.volRatio,2)+"x":"-"}</strong></div>
+   <div class="stat"><small>Dist. MME9</small><strong>${a.tech?fmt(a.tech.stretchPct,2)+"%":"-"}</strong></div>
+   <div class="stat"><small>Exposição</small><strong id="exp${i}">-</strong></div>
+   <div class="stat"><small>Risco est.</small><strong id="risk${i}">-</strong></div>
+   <div class="stat"><small>Margem máx.</small><strong id="maxm${i}">-</strong></div>
+  </div>
+  ${a.reference?"":`<div class="marketStats">
+   <div class="stat"><small>👥 Interesse mercado</small><strong>${a.interest&&hasNum(a.interest.score)?Number(a.interest.score)+"/100":"--"}</strong></div>
+   <div class="stat"><small>💵 Negociado 24h</small><strong>${a.market?compactUSD(a.market.amount24):"--"}</strong></div>
+   <div class="stat"><small>📦 Volume 24h</small><strong>${a.market?compactNum(a.market.volume24):"--"}</strong></div>
+   <div class="stat"><small>📌 Posições abertas</small><strong>${a.market?compactNum(a.market.holdVol):"--"}</strong></div>
+   <div class="stat"><small>💧 Spread</small><strong>${a.market&&hasNum(a.market.spreadPct)?fmt(a.market.spreadPct,3)+"%":"--"}</strong></div>
+  </div>
+  <div class="holderStats">
+   <div class="stat"><small>👥 Holders on-chain</small><strong>${a.holders&&Number.isFinite(Number(a.holders.count))?Number(a.holders.count).toLocaleString("pt-BR"):(a.holdersSupported===false?"não configurado":"--")}</strong></div>
+   <div class="stat"><small>📈 Crescimento holders</small><strong>${a.holders?esc(holderGrowthText(a.holders)):"--"}</strong></div>
+   <div class="stat"><small>🐋 Concentração Top 10</small><strong>${a.holders&&Number.isFinite(Number(a.holders.top10Pct))?fmt(a.holders.top10Pct,2)+"%":"--"}</strong></div>
+   <div class="stat"><small>🕒 Dados on-chain</small><strong>${a.holders?esc(holderUpdatedText(a.holders)):"--"}</strong></div>
+  </div>
+  <div class="holderNote">${a.holders?`Fonte holders: ${esc(a.holders.source||"on-chain")} • Top 10 pode incluir carteiras de corretoras.`:(a.holdersSupported===false?"Holders automáticos ainda não configurados para este ativo.":"Aguardando leitura de holders.")} ${a.market?"• Mercado: MEXC Futures 24h.":""}</div>`}
+  <div class="statusline" id="reason${i}">${a.tech?esc(a.tech.summary):"Sem análise automática ainda."}</div>`;
+  $("assets").appendChild(sec)
+ });
+ const add=document.createElement("section");add.className="card";add.innerHTML=`<button class="btn2" onclick="addAsset()">＋ Adicionar microcap</button>`;$("assets").appendChild(add);
+ renderInterestPanel();
+ recalc()
+}
+
+function effectiveEntry(a){return num(a.entry)||num(a.marketPrice)}
+function effectiveStop(a){return num(a.stop)||num(a.autoStop)}
+
+function recalc(){
+ const s=cfg(),reserve=s.capital*s.reservePct/100,usable=s.capital-reserve,maxRisk=s.capital*s.riskPct/100;
+ const opened=data.filter(x=>x.open&&!x.reference),marginOpen=opened.reduce((t,x)=>t+num(x.margin),0);
+ let totalRisk=0;
+ data.forEach((a,i)=>{
+  const score=a.c.filter(Boolean).length,exp=num(a.margin)*s.lev,e=effectiveEntry(a),st=effectiveStop(a);
+  const dist=(e>0&&st>0&&st<e)?(e-st)/e*100:NaN,risk=isFinite(dist)?exp*dist/100:NaN;
+  const maxMargin=isFinite(dist)&&dist>0?maxRisk/(dist/100)/s.lev:NaN;
+  if(a.open&&isFinite(risk))totalRisk+=risk;
+  let state="AGUARDAR",cls="wait",reasons=[];
+  if(a.reference){
+    const scoreRef=a.c.filter(Boolean).length;
+    if(scoreRef>=6){state="BTC FAVORÁVEL AO LONG";cls="ok";reasons.push("contexto BTC favorável")}
+    else if(scoreRef>=4){state="BTC NEUTRO / MISTO";cls="wait";reasons.push("contexto misto")}
+    else {state="BTC CONTRÁRIO / FRACO";cls="block";reasons.push("contexto BTC desfavorável")}
+  }
+  if(!a.reference){
+    if(a.status==="DESCARTAR"){state="BLOQUEADA";cls="block";reasons.push("descartada manualmente")}
+    if(score<8)reasons.push(`checklist ${score}/8`);
+    if(!isFinite(dist))reasons.push("stop válido ainda não disponível");
+    if(isFinite(risk)&&risk>maxRisk){state="BLOQUEADA";cls="block";reasons.push(`risco ${money(risk)} > ${money(maxRisk)}`)}
+    if(a.open&&opened.length>s.maxOpen){state="BLOQUEADA";cls="block";reasons.push("excedeu posições abertas")}
+    if(a.open&&marginOpen>usable){state="BLOQUEADA";cls="block";reasons.push("reserva mínima violada")}
+    if(a.status!=="DESCARTAR"&&score===8&&isFinite(dist)&&risk<=maxRisk&&opened.length<=s.maxOpen&&marginOpen<=usable){state="LIBERADA PELO PLANO";cls="ok";reasons.push("8/8 + risco dentro do limite")}
+  }
+  a.currentState=state;
+  let b=$("badge"+i);if(b){b.textContent=state;b.className="badge "+cls}
+  if($("score"+i))$("score"+i).textContent=`${score}/8`;
+  if($("exp"+i))$("exp"+i).textContent=money(exp);
+  if($("risk"+i))$("risk"+i).textContent=isFinite(risk)?money(risk):"-";
+  if($("maxm"+i))$("maxm"+i).textContent=isFinite(maxMargin)?money(maxMargin):"-";
+  if($("reason"+i))$("reason"+i).textContent=(a.tech?a.tech.summary+" | ":"")+reasons.join(" • ")
+ });
+ $("dCapital").textContent=money(s.capital);
+ $("dReserve").textContent=money(reserve);
+ $("dMargin").textContent=money(marginOpen);
+ $("dExposure").textContent=money(marginOpen*s.lev);
+ $("dRisk").textContent=money(totalRisk);
+ $("dReleased").textContent=String(data.filter(x=>!x.reference&&x.currentState==="LIBERADA PELO PLANO").length);
+ saveAll(false)
+}
+
+function ema(v,p){if(v.length<p)return v.map(()=>NaN);let o=Array(v.length).fill(NaN),k=2/(p+1),seed=v.slice(0,p).reduce((a,b)=>a+b,0)/p;o[p-1]=seed;for(let i=p;i<v.length;i++)o[i]=v[i]*k+o[i-1]*(1-k);return o}
+function rsi(v,p=14){let o=Array(v.length).fill(NaN);if(v.length<=p)return o;let g=0,l=0;for(let i=1;i<=p;i++){let d=v[i]-v[i-1];if(d>=0)g+=d;else l-=d}g/=p;l/=p;o[p]=l===0?100:100-(100/(1+g/l));for(let i=p+1;i<v.length;i++){let d=v[i]-v[i-1];g=(g*(p-1)+Math.max(d,0))/p;l=(l*(p-1)+Math.max(-d,0))/p;o[i]=l===0?100:100-(100/(1+g/l))}return o}
+function macd(v){let e12=ema(v,12),e26=ema(v,26),line=v.map((_,i)=>e12[i]-e26[i]),sig=ema(line.map(x=>isFinite(x)?x:0),9),hist=line.map((x,i)=>x-sig[i]);return{line,signal:sig,hist}}
+function avg(a){let v=a.filter(Number.isFinite);return v.length?v.reduce((x,y)=>x+y,0)/v.length:NaN}
+function crossRecent(a,b,bars=3){for(let k=1;k<=bars;k++){let i=a.length-k,p=i-1;if(p<0)break;if(isFinite(a[i])&&isFinite(b[i])&&isFinite(a[p])&&isFinite(b[p])&&a[p]<=b[p]&&a[i]>b[i])return true}return false}
+
+async function fetchKline(ticker,interval,limit=180){
+ const symbol=mexcSymbol(ticker);
+ const r=await fetch(api(`/api/kline/${encodeURIComponent(symbol)}?interval=${encodeURIComponent(interval)}&limit=${limit}`),{cache:"no-store"});
+ const j=await r.json();
+ if(!r.ok||!j.ok)throw new Error(j.error||`HTTP ${r.status}`);
+ const d=j.data||{};
+ let rows=(d.time||[]).map((t,i)=>({time:Number(t),open:Number(d.open[i]),high:Number(d.high[i]),low:Number(d.low[i]),close:Number(d.close[i]),vol:Number(d.vol[i])}))
+ .filter(x=>Number.isFinite(x.close)).sort((a,b)=>a.time-b.time);
+ return rows.slice(-limit)
+}
+
+
+async function fetchMarketStats(ticker){
+ const r=await fetch(api(`/api/market/${encodeURIComponent(ticker)}`),{cache:"no-store"});
+ const j=await r.json();
+ if(!r.ok||!j.ok)throw new Error(j.error||`HTTP ${r.status}`);
+ return j
+}
+function applyMarketStats(a,j){
+ if(!j)return;
+ a.market={
+   amount24:nOrNull(j.amount24),volume24:nOrNull(j.volume24),holdVol:nOrNull(j.holdVol),
+   bid1:nOrNull(j.bid1),ask1:nOrNull(j.ask1),spreadPct:nOrNull(j.spreadPct),
+   riseFallRate:nOrNull(j.riseFallRate),high24Price:nOrNull(j.high24Price),lower24Price:nOrNull(j.lower24Price),
+   checkedAt:j.checkedAt||new Date().toISOString(),source:j.source||"MEXC Futures"
+ };
+}
+
+async function fetchHolderStats(ticker){
+ const r=await fetch(api(`/api/holders/${encodeURIComponent(ticker)}`),{cache:"no-store"});
+ const j=await r.json();
+ if(!r.ok||!j.ok)throw new Error(j.error||`HTTP ${r.status}`);
+ return j
+}
+function applyHolderStats(a,j){
+ if(!j||j.supported===false){a.holdersSupported=false;return}
+ const count=Number(j.holdersCount);
+ if(!Number.isFinite(count)){a.holdersSupported=true;return}
+ a.holdersSupported=true;
+ const now=Date.now(),key=a.ticker;
+ let hist=Array.isArray(holderHistory[key])?holderHistory[key]:[];
+ hist=hist.filter(x=>x&&Number.isFinite(Number(x.time))&&Number.isFinite(Number(x.count))&&now-Number(x.time)<=7*86400000);
+ const last=hist[hist.length-1];
+ if(!last||now-Number(last.time)>=3600000)hist.push({time:now,count});
+ const target=now-24*3600000;
+ const older=hist.filter(x=>Number(x.time)<=target);
+ const baseline=older.length?older[older.length-1]:(hist.length>1?hist[0]:null);
+ let growthCount=null,growthPct=null,periodHours=0;
+ if(baseline){
+  growthCount=count-Number(baseline.count);periodHours=(now-Number(baseline.time))/3600000;
+  growthPct=Number(baseline.count)>0?growthCount/Number(baseline.count)*100:0;
+ }
+ holderHistory[key]=hist.slice(-168);
+ localStorage.setItem("microEgiHolderHistory",JSON.stringify(holderHistory));
+ a.holders={count,top10Pct:Number(j.top10Pct),checkedAt:j.checkedAt||new Date().toISOString(),providerUpdatedAt:j.providerUpdatedAt||null,source:j.source||"Ethplorer / Ethereum",contract:j.contract||null,growthCount,growthPct,periodHours};
+}
+
+function analyzeFrames(m15,h1,h4){
+ if(m15.length<50||h1.length<50||h4.length<50)throw new Error("histórico insuficiente");
+ const calc=r=>{let c=r.map(x=>x.close),v=r.map(x=>x.vol),e9=ema(c,9),e14=ema(c,14),R=rsi(c,14),M=macd(c),i=c.length-1,vm=avg(v.slice(Math.max(0,i-20),i));return{r,c,v,e9,e14,R,M,i,last:c[i],volRatio:vm>0?v[i]/vm:NaN}};
+ const A=calc(m15),B=calc(h1),C=calc(h4),i=A.i,bi=B.i,ci=C.i;
+ const gate15=(crossRecent(A.e9,A.e14,3)||crossRecent(A.M.line,A.M.signal,3))&&A.last>=A.e9[i];
+ const confirm1=B.e9[bi]>B.e14[bi]&&B.M.line[bi]>B.M.signal[bi]&&B.R[bi]>=48;
+ const notAgainst4=C.c[ci]>=C.e14[ci]||(C.R[ci]>=45&&C.M.hist[ci]>C.M.hist[ci-1]);
+ const rsiOk=A.R[i]>=45&&A.R[i]<=65,macdOk=A.M.line[i]>A.M.signal[i],emaOk=A.e9[i]>A.e14[i],volOk=A.volRatio>=1;
+ const stretch=Math.abs(A.last-A.e9[i])/A.e9[i]*100,notStretched=stretch<=2.5&&A.R[i]<68;
+ const structuralStop=Math.min(...m15.slice(-8).map(x=>x.low))*0.998;
+ const summary=`15m RSI ${fmt(A.R[i],2)} | Vol ${fmt(A.volRatio,2)}x | MME9 ${emaOk?"acima":"abaixo"} 14 | 1h ${confirm1?"confirma":"não confirma"} | 4h ${notAgainst4?"ok":"contra"}`;
+ return{checks:[gate15,confirm1,notAgainst4,rsiOk,macdOk,emaOk,volOk,notStretched],price:A.last,autoStop:structuralStop,tech:{rsi15:A.R[i],volRatio:A.volRatio,stretchPct:stretch,confirm1,notAgainst4,summary}}
+}
+
+async function scanOne(i,notify=true){
+ const a=data[i];if(!a)return false;const old=a.currentState;
+ try{
+  const holderPromise=a.reference?Promise.resolve({ok:true,supported:false}):fetchHolderStats(a.ticker).catch(e=>({ok:false,error:e.message}));
+  const marketPromise=fetchMarketStats(a.ticker).catch(e=>({ok:false,error:e.message}));
+  const [m15,h1,h4,holder,market]=await Promise.all([fetchKline(a.ticker,"Min15"),fetchKline(a.ticker,"Min60"),fetchKline(a.ticker,"Hour4"),holderPromise,marketPromise]);
+  const z=analyzeFrames(m15,h1,h4);a.marketPrice=z.price;a.autoStop=z.autoStop;a.tech=z.tech;a.c=z.checks;a.lastScan=Date.now();
+  if(holder&&holder.ok)applyHolderStats(a,holder);
+  else if(holder&&holder.error)addEvent(`${a.ticker}: holders não atualizados — ${holder.error}.`);
+  if(market&&market.ok)applyMarketStats(a,market);
+  else if(market&&market.error)addEvent(`${a.ticker}: mercado 24h não atualizado — ${market.error}.`);
+  recomputeInterest();
+  recalc();const now=a.currentState,score=a.c.filter(Boolean).length;
+  addEvent(`${a.ticker}: leitura Render/MEXC concluída — ${score}/8 — ${now}.`);
+  if(old!==now){
+   if(a.reference){
+     addEvent(`BTC: MUDANÇA DE CONTEXTO — ${now}.`,true);
+     if(notify)await sendNtfy(`BTC mudou de contexto`,`BTC agora: ${now}. ${a.tech?.summary||""}`);
+   }else if(now==="LIBERADA PELO PLANO"){
+     addEvent(`${a.ticker}: MUDANÇA MATERIAL — LIBERADA PELO PLANO.`,true);
+     if(notify)await sendNtfy(`${a.ticker} LIBERADA`,`${a.ticker} atingiu 8/8. Preço ${fmt(a.marketPrice)} | stop estrutural ${fmt(a.autoStop)}.`);
+   }else if(old==="LIBERADA PELO PLANO"){
+     addEvent(`${a.ticker}: MUDANÇA MATERIAL — perdeu a liberação (${now}).`,true);
+     if(notify)await sendNtfy(`${a.ticker} perdeu liberação`,`${a.ticker} saiu da condição 8/8. Estado: ${now}.`);
+   }
+  }
+  render();return true
+ }catch(e){addEvent(`${a.ticker}: erro de leitura — ${e.message}.`);return false}
+}
+
+async function scanAll(notify=true){
+ if(scanning)return;scanning=true;$("scanBtn").disabled=true;$("scanBtn").textContent="⏳ Atualizando...";
+ $("apiStatus").textContent="Render consultando MEXC Futures...";
+ let ok=0;for(let i=0;i<data.length;i++){if(await scanOne(i,notify))ok++;await new Promise(r=>setTimeout(r,250))}
+ $("apiStatus").textContent=`Varredura concluída: ${ok}/${data.length} ativos atualizados às ${new Date().toLocaleTimeString("pt-BR")}.`;
+ scanning=false;$("scanBtn").disabled=false;$("scanBtn").textContent="🔄 Atualizar Tudo Agora";generateReport();scheduleAuto()
+}
+
+async function testBackend(){
+ try{let r=await fetch(api("/api/health"),{cache:"no-store"}),j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||"falha");$("apiStatus").textContent=`✅ Render OK • ntfy ${j.ntfy_configured?"configurado no servidor":"não configurado no servidor"}`;addEvent("Teste do backend Render: OK.",true)}
+ catch(e){$("apiStatus").textContent=`❌ Render não respondeu: ${e.message}`;addEvent(`Teste do backend Render falhou: ${e.message}`,true)}
+}
+
+async function sendNtfy(title,message){
+ try{
+  let r=await fetch(api("/api/ntfy"),{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({topic:cfg().ntfyTopic,title,message,priority:cfg().ntfyPriority})
+  });
+  let j=await r.json();
+  if(!r.ok||!j.ok)throw new Error(j.error||"falha ntfy");
+
+  if(j.sent){
+    addEvent(`ntfy enviado: ${title}.`);
+    return {ok:true,sent:true,status:"sent"};
+  }
+
+  const sec=j.retry_after?` Aguarde ~${j.retry_after}s.`:"";
+  if(j.status==="rate_limited"){
+    addEvent(`ntfy temporariamente limitado (429).${sec}`,true);
+  }else if(j.status==="duplicate"){
+    addEvent(`ntfy repetido ignorado para evitar excesso.${sec}`);
+  }else{
+    addEvent(`ntfy em cooldown.${sec}`);
+  }
+  return {ok:true,sent:false,status:j.status||"cooldown",retry_after:j.retry_after||0};
+ }catch(e){
+  addEvent(`ntfy falhou: ${e.message}.`,true);
+  return {ok:false,sent:false,status:"error"};
+ }
+}
+async function testNtfy(){
+ const r=await sendNtfy("Carteira Micro EGI 3x","Teste do ntfy via Render: integração ativa.");
+ if(r.sent) alert("Teste enviado. Confira o ntfy.");
+ else if(r.ok) alert(`ntfy protegido por cooldown/limite. ${r.retry_after?`Aguarde cerca de ${r.retry_after}s e teste novamente.`:"Tente novamente mais tarde."}`);
+ else alert("Falha no ntfy. Veja o registro de ações.");
+}
+
+function scheduleAuto(){clearTimeout(timer);let s=cfg().autoSec;if(s>0)timer=setTimeout(()=>scanAll(true),s*1000)}
+function upd(i,k,v){data[i][k]=k==="margin"?num(v):v;recalc()}
+function toggleOpen(i){if(data[i].reference)return;data[i].open=!data[i].open;addEvent(`${data[i].ticker}: posição marcada como ${data[i].open?"ABERTA":"FECHADA"}.`,true);render()}
+function addAsset(){data.push({ticker:"NOVOUSDT",margin:50,reference:false,entry:"",stop:"",status:"CANDIDATA",open:false,c:Array(8).fill(false),marketPrice:null,autoStop:null,tech:null,currentState:"SEM LEITURA",lastScan:null,holders:null,holdersSupported:true,market:null,interest:null});render()}
+function removeAsset(i){if(data[i].reference){alert("BTC é a referência fixa do mercado e fica no topo.");return}addEvent(`${data[i].ticker}: removida da carteira.`,true);data.splice(i,1);render()}
+
+
+
+function showBtcContext(i){
+ const a=data[i],score=a.c.filter(Boolean).length;
+ let regime=score>=6?"🟢 FAVORÁVEL AO LONG":score>=4?"🟡 NEUTRO / MISTO":"🔴 CONTRÁRIO / FRACO";
+ let guidance=score>=6
+   ?"O BTC está ajudando o ambiente para operações LONG em microcaps. Ainda assim, cada moeda precisa cumprir seu próprio checklist e risco."
+   :score>=4
+     ?"O BTC está misto. Exija confirmações mais fortes nas microcaps e evite antecipar entrada."
+     :"O BTC está fraco/contrário. O app deve tratar isso como freio para novas LONGs em microcaps, sem bloquear sinais automaticamente.";
+ $("potTitle").textContent="🧭 BTCUSDT — Contexto do Mercado";
+ $("potBody").innerHTML=`
+   <div class="potScore">${regime} • ${score}/8</div>
+   <div class="potGrid" style="margin-top:10px">
+    <div class="potBlock"><b>📌 Leitura do BTC</b>
+      <div>${a.tech?esc(a.tech.summary):"Sem leitura automática ainda."}</div>
+    </div>
+    <div class="potBlock"><b>🎯 Como usar na carteira</b><div>${esc(guidance)}</div></div>
+    <div class="potBlock"><b>✅ Regras confirmadas</b><ul>${checklist.map((x,j)=>a.c[j]?`<li>${esc(x)}</li>`:"").join("")||"<li>Nenhuma confirmação ainda.</li>"}</ul></div>
+    <div class="potBlock"><b>⚠️ Regras faltantes</b><ul>${checklist.map((x,j)=>!a.c[j]?`<li>${esc(x)}</li>`:"").join("")||"<li>Nenhuma.</li>"}</ul></div>
+   </div>`;
+ $("potentialModal").classList.add("show");
+}
+
+function potentialAnalysis(i){
+ const a=data[i],s=cfg(),score=a.c.filter(Boolean).length;
+ if(a.reference) return {a,score,level:"REFERÊNCIA BTC",emoji:"🧭",tone:"info",positives:[],missing:[],why:["BTC usado como contexto do mercado."],caution:[],targets:null,e:0,st:0,risk:NaN};
+ const e=effectiveEntry(a),st=effectiveStop(a);
+ const dist=(e>0&&st>0&&st<e)?(e-st)/e:NaN;
+ const exp=num(a.margin)*s.lev;
+ const risk=isFinite(dist)?exp*dist:NaN;
+ let level="BAIXO",emoji="🔴",tone="bad";
+ if(score>=8){level="ALTO";emoji="🟢";tone="good"}
+ else if(score>=6){level="MÉDIO";emoji="🟡";tone="warn"}
+ else if(score>=4){level="EM FORMAÇÃO";emoji="🟠";tone="warn"}
+
+ const positives=[],missing=[];
+ checklist.forEach((x,j)=>(a.c[j]?positives:missing).push(x));
+
+ let why=[];
+ if(a.tech){
+  if(a.tech.confirm1)why.push("O 1h confirma a direção.");
+  if(a.tech.notAgainst4)why.push("O 4h não está fortemente contra a operação.");
+  if(a.tech.rsi15>=45&&a.tech.rsi15<=65)why.push(`RSI 15m em região saudável (${fmt(a.tech.rsi15,2)}).`);
+  if(a.tech.volRatio>=1)why.push(`Volume atual acima/igual à média de 20 candles (${fmt(a.tech.volRatio,2)}x).`);
+  if(a.tech.stretchPct<=2.5)why.push(`Preço não está muito afastado da MME9 (${fmt(a.tech.stretchPct,2)}%).`);
+ }
+ if(score===8)why.unshift("Checklist técnico completo 8/8.");
+ if(isFinite(risk)&&risk<=s.capital*s.riskPct/100)why.push(`Risco estimado dentro do limite (${money(risk)}).`);
+
+ let targets=null;
+ if(isFinite(dist)&&e>0){
+   const r=e-st;
+   targets={r1:e+r,r2:e+2*r,r3:e+3*r};
+ }
+
+ let caution=[];
+ if(missing.length)caution.push(...missing.slice(0,5));
+ if(!isFinite(dist))caution.push("Entrada/stop ainda não permitem calcular risco e alvos.");
+ if(isFinite(risk)&&risk>s.capital*s.riskPct/100)caution.push(`Risco estimado ${money(risk)} acima do limite ${money(s.capital*s.riskPct/100)}.`);
+ if(a.status==="DESCARTAR")caution.push("Moeda marcada manualmente como DESCARTAR.");
+
+ return {a,score,level,emoji,tone,positives,missing,why,caution,targets,e,st,risk};
+}
+
+function potentialText(i){
+ const p=potentialAnalysis(i),a=p.a,out=[];
+ const proj=PROJECT_INFO[a.ticker]||null;
+ out.push(`${a.ticker} — POTENCIAL / POR QUE COMPRAR`);
+ out.push("");
+ out.push("1) PROJETO — POR QUE EXISTE POTENCIAL");
+ if(proj){
+   out.push(`Setor: ${proj.sector}`);
+   out.push(`Tese: ${proj.thesis}`);
+   out.push(`Por que pode valorizar: ${proj.why}`);
+   out.push(`Principais riscos: ${proj.risks}`);
+   out.push(`O que acompanhar: ${proj.watch}`);
+ }else{
+   out.push("Projeto ainda não cadastrado no app. Solicitar análise fundamental antes de usar este bloco.");
+ }
+ out.push("");
+ out.push("2) TÉCNICO MEXC — ENTRAR AGORA OU ESPERAR");
+ out.push(`Potencial técnico: ${p.emoji} ${p.level} (${p.score}/8)`);
+ out.push(`Estado atual: ${a.currentState}`);
+ if(a.marketPrice)out.push(`Preço de referência: ${fmt(a.marketPrice)}`);
+ if(a.tech)out.push(`Leitura: ${a.tech.summary}`);
+ out.push("");
+ out.push("CONFIRMAÇÕES PRESENTES");
+ if(p.why.length)p.why.forEach(x=>out.push(`• ${x}`)); else out.push("• Ainda não há confirmação técnica suficiente.");
+ out.push("");
+ out.push("O QUE FALTA / RISCOS TÉCNICOS");
+ if(p.caution.length)p.caution.forEach(x=>out.push(`• ${x}`)); else out.push("• Nenhuma pendência do checklist programado.");
+ if(p.targets){
+  out.push("");
+  out.push("RISCO/RETORNO TEÓRICO");
+  out.push(`• Entrada usada: ${fmt(p.e)} | Stop: ${fmt(p.st)}`);
+  out.push(`• 1R: ${fmt(p.targets.r1)} | 2R: ${fmt(p.targets.r2)} | 3R: ${fmt(p.targets.r3)}`);
+ }
+ out.push("");
+ out.push("CONCLUSÃO OPERACIONAL");
+ out.push(p.score===8
+   ?"ENTRAR SOMENTE SE a cotação ainda estiver próxima da referência, o stop continuar válido e o risco permanecer dentro do limite. O 8/8 não garante alta."
+   :p.score>=6
+     ?"ESPERAR. Há potencial, mas ainda faltam confirmações do checklist."
+     :"AGUARDAR. O técnico ainda não justifica entrada pelas regras atuais.");
+ return out.join("\n");
+}
+function showPotential(i){
+ const p=potentialAnalysis(i),proj=PROJECT_INFO[p.a.ticker]||null;
+ $("potTitle").textContent=`💡 ${p.a.ticker} — Potencial / Por que comprar?`;
+
+ const projectHtml=proj?`
+  <div class="potBlock">
+   <b>🧩 1) Projeto — por que existe potencial</b>
+   <div><strong>Setor:</strong> ${esc(proj.sector)}</div>
+   <div style="margin-top:7px"><strong>Tese:</strong> ${esc(proj.thesis)}</div>
+   <div style="margin-top:7px"><strong>Por que pode valorizar:</strong> ${esc(proj.why)}</div>
+   <div style="margin-top:7px"><strong>Riscos do projeto:</strong> ${esc(proj.risks)}</div>
+   <div style="margin-top:7px"><strong>O que acompanhar:</strong> ${esc(proj.watch)}</div>
+  </div>`:
+  `<div class="potBlock"><b>🧩 1) Projeto — por que existe potencial</b><div>Projeto ainda não cadastrado. Envie o ticker ao GPT para análise fundamental.</div></div>`;
+
+ const why=p.why.length?p.why.map(x=>`<li>${esc(x)}</li>`).join(""):"<li>Ainda não há confirmação técnica suficiente.</li>";
+ const caution=p.caution.length?p.caution.map(x=>`<li>${esc(x)}</li>`).join(""):"<li>Nenhuma pendência do checklist programado.</li>";
+ const decision=p.score===8
+   ?"🟢 ENTRAR SOMENTE SE preço, stop e risco continuarem válidos. O 8/8 não garante alta."
+   :p.score>=6
+     ?"🟡 ESPERAR — potencial existe, mas ainda faltam confirmações."
+     :"🔴 AGUARDAR — técnico ainda insuficiente pelas regras.";
+
+ const targets=p.targets?`
+   <div style="margin-top:8px"><strong>Entrada:</strong> ${fmt(p.e)} &nbsp; <strong>Stop:</strong> ${fmt(p.st)}</div>
+   <div style="margin-top:5px"><strong>1R:</strong> ${fmt(p.targets.r1)} &nbsp; <strong>2R:</strong> ${fmt(p.targets.r2)} &nbsp; <strong>3R:</strong> ${fmt(p.targets.r3)}</div>`:"";
+
+ $("potBody").innerHTML=`
+  <div class="potScore ${p.tone}">${p.emoji} Potencial técnico: ${p.level} • ${p.score}/8</div>
+  <div class="note">Projeto = tese de médio/longo prazo cadastrada. Técnico = leitura atual obtida pelo app via MEXC/Render.</div>
+  <div class="potGrid" style="margin-top:10px">
+   ${projectHtml}
+   <div class="potBlock">
+    <b>📈 2) Técnico MEXC — entrar agora ou esperar</b>
+    <div>${p.a.tech?esc(p.a.tech.summary):"Sem leitura automática ainda."}</div>
+    <div style="margin-top:8px"><strong>Confirmações:</strong><ul>${why}</ul></div>
+    <div style="margin-top:8px"><strong>Faltas / riscos:</strong><ul>${caution}</ul></div>
+    ${targets}
+   </div>
+   <div class="potBlock">
+    <b>🧭 Decisão pelas regras do app</b>
+    <div>${esc(decision)}</div>
+   </div>
+  </div>`;
+ $("potentialModal").classList.add("show");
+}
+
+function showInterest(i){
+ recomputeInterest();const a=data[i];if(!a||a.reference)return;
+ const sc=a.interest&&hasNum(a.interest.score)?Number(a.interest.score):null,l=interestLabel(sc);
+ const parts=(a.interest&&a.interest.parts||[]).map(x=>`<li>${esc(x.name)}: ${Math.round(x.val)}/100</li>`).join("")||"<li>Atualize o ativo para gerar os componentes.</li>";
+ const holders=a.holders&&Number.isFinite(Number(a.holders.count))?Number(a.holders.count).toLocaleString("pt-BR"):"não disponível";
+ const amount=a.market?compactUSD(a.market.amount24):"--";
+ const hold=a.market?compactNum(a.market.holdVol):"--";
+ const spread=a.market&&hasNum(a.market.spreadPct)?fmt(a.market.spreadPct,3)+"%":"--";
+ $("potTitle").textContent=`👥 ${a.ticker} — Interesse do Mercado`;
+ $("potBody").innerHTML=`<div class="potScore ${l.cls}">${l.emoji} Interesse: ${sc===null?'--':sc+'/100'} • ${l.text}</div><div class="potGrid"><div class="potBlock"><b>📊 Atividade</b><div>Negociado 24h: ${amount}</div><div>Posições abertas: ${hold}</div><div>Vol/Média 15m: ${a.tech?fmt(a.tech.volRatio,2)+'x':'--'}</div><div>Spread: ${spread}</div></div><div class="potBlock"><b>👥 Holders</b><div>Carteiras: ${holders}</div><div>Crescimento: ${a.holders?esc(holderGrowthText(a.holders)):'--'}</div><div>Top 10: ${a.holders&&Number.isFinite(Number(a.holders.top10Pct))?fmt(a.holders.top10Pct,2)+'%':'--'}</div></div><div class="potBlock"><b>🧮 Componentes do score</b><ul>${parts}</ul></div><div class="potBlock"><b>ℹ️ Interpretação</b><div>Este score mede interesse/atividade, não qualidade do projeto nem sinal de compra. Volume e spread vêm da MEXC; holders vêm de fonte on-chain quando configurada. “Posições abertas” também não representa número de pessoas únicas.</div></div></div>`;
+ $("potentialModal").classList.add("show");
+}
+
+function closePotential(){$("potentialModal").classList.remove("show")}
+
+function buildReport(){
+ recalc();const s=cfg(),reserve=s.capital*s.reservePct/100,usable=s.capital-reserve,maxRisk=s.capital*s.riskPct/100;
+ const opened=data.filter(x=>x.open&&!x.reference),marginOpen=opened.reduce((t,x)=>t+num(x.margin),0);let out=[];
+ out.push(`RELATÓRIO INTELIGENTE PARA CHATGPT — CARTEIRA MICRO EGI 3X — ${VERSION}`);
+ out.push(`Gerado em: ${ts()}`,"","PAINEL DA CARTEIRA");
+ out.push(`Capital: ${money(s.capital)} | Reserva: ${money(reserve)} | Margem usada: ${money(marginOpen)} | Exposição aberta: ${money(marginOpen*s.lev)}`);
+ out.push(`Risco máximo por trade: ${money(maxRisk)} | Máx. posições: ${s.maxOpen} | Abertas: ${opened.length} | Liberadas: ${data.filter(x=>!x.reference&&x.currentState==="LIBERADA PELO PLANO").length}`);
+ out.push("");
+ const btc=data.find(x=>x.reference);
+ if(btc){
+   out.push("CONTEXTO BTC — REFERÊNCIA DO MERCADO");
+   out.push(`Estado BTC: ${btc.currentState} | Preço: ${btc.marketPrice?fmt(btc.marketPrice):"-"} | Checklist: ${btc.c.filter(Boolean).length}/8`);
+   if(btc.tech)out.push(`RSI15 ${fmt(btc.tech.rsi15,2)} | Vol/Média ${fmt(btc.tech.volRatio,2)}x | 1h ${btc.tech.confirm1?"OK":"NÃO"} | 4h ${btc.tech.notAgainst4?"OK":"CONTRA"}`);
+   out.push("");
+ }
+ data.forEach((a,i)=>{
+  if(a.reference)return;
+  let e=effectiveEntry(a),st=effectiveStop(a),dist=(e>0&&st>0&&st<e)?(e-st)/e*100:NaN,exp=num(a.margin)*s.lev,risk=isFinite(dist)?exp*dist/100:NaN,maxMargin=isFinite(dist)&&dist>0?maxRisk/(dist/100)/s.lev:NaN;
+  out.push(`${i+1}. ${a.ticker} — ${a.currentState}`);
+  out.push(`Preço: ${a.marketPrice?fmt(a.marketPrice):"-"} | Stop usado: ${st?fmt(st):"-"} | Margem: ${money(a.margin)} | Exposição: ${money(exp)}`);
+  out.push(`Distância stop: ${isFinite(dist)?dist.toFixed(2)+"%":"-"} | Risco: ${isFinite(risk)?money(risk):"-"} | Margem máx. pelo risco: ${isFinite(maxMargin)?money(maxMargin):"-"}`);
+  if(a.tech)out.push(`RSI15 ${fmt(a.tech.rsi15,2)} | Vol/Média ${fmt(a.tech.volRatio,2)}x | Dist.MME9 ${fmt(a.tech.stretchPct,2)}% | 1h ${a.tech.confirm1?"OK":"NÃO"} | 4h ${a.tech.notAgainst4?"OK":"CONTRA"}`);
+  if(a.interest&&hasNum(a.interest.score))out.push(`INTERESSE DO MERCADO: ${a.interest.score}/100 (${interestLabel(a.interest.score).text})`);
+  if(a.market)out.push(`MEXC 24H: negociado ${compactUSD(a.market.amount24)} | volume ${compactNum(a.market.volume24)} | posições abertas ${compactNum(a.market.holdVol)} | spread ${hasNum(a.market.spreadPct)?fmt(a.market.spreadPct,3)+"%":"-"}`);
+  if(a.holders){
+   out.push(`HOLDERS ON-CHAIN: ${Number(a.holders.count).toLocaleString("pt-BR")} | Crescimento: ${holderGrowthText(a.holders)} | Top 10: ${Number.isFinite(Number(a.holders.top10Pct))?fmt(a.holders.top10Pct,2)+"%":"-"} | Fonte: ${a.holders.source||"on-chain"}`);
+  }else if(a.holdersSupported===false)out.push("HOLDERS ON-CHAIN: fonte automática ainda não configurada para este ativo.");
+  checklist.forEach((x,j)=>out.push(`${a.c[j]?"✅":"⬜"} ${x}`));
+  out.push("");
+  out.push("POTENCIAL / POR QUE COMPRAR");
+  potentialText(i).split("\n").forEach(l=>out.push(l));
+  out.push("")
+ });
+ out.push("DESCRIÇÃO DOS FEITOS");
+ out.push("• Backend Render consulta a MEXC Futures; o navegador não acessa a API da MEXC diretamente.");
+ out.push("• Analisa 15m/1h/4h; calcula RSI, MACD, MME9/14, volume relativo e stop estrutural.");
+ out.push("• Recalcula risco, exposição, reserva e margem máxima.");
+ out.push("• Registra mudança material e envia ntfy via Render.");
+ out.push("• Botão Potencial separa a tese do projeto da leitura técnica atual da MEXC.");
+ out.push("• Calcula Interesse do Mercado com valor negociado 24h, aceleração do volume e spread da MEXC; adiciona holders/crescimento/concentração quando disponíveis.");
+ out.push("• ‘Procura’ é uma aproximação de atividade de mercado; a MEXC não fornece número de pessoas únicas negociando.");
+ out.push("","ÚLTIMOS EVENTOS");
+ events.slice(0,15).forEach(e=>out.push(`${e.material?"★":"•"} ${e.time} — ${e.msg}`));
+ out.push("","PEDIDO AO CHATGPT","Revise como fiscal de disciplina e gestão de risco. Não execute operação. Aponte quais moedas estão liberadas, quais aguardam, quais regras faltam e se alguma margem precisa ser reduzida.");
+ return out.join("\n")
+}
+function generateReport(){$("report").value=buildReport()}
+async function copyReport(){generateReport();try{await navigator.clipboard.writeText($("report").value);alert("Relatório copiado.")}catch(e){$("report").select();document.execCommand("copy");alert("Relatório copiado.")}}
+async function shareReport(){generateReport();if(navigator.share){try{await navigator.share({title:"Carteira Micro EGI 3x",text:$("report").value})}catch(e){}}else await copyReport()}
+function saveAll(show=false){localStorage.setItem("microEgiV3Data",JSON.stringify(data));localStorage.setItem("microEgiV3Events",JSON.stringify(events));localStorage.setItem("microEgiV3Cfg",JSON.stringify(cfg()));if(show)alert("Salvo.")}
+
+function openSelectedIndex(){
+ const sel=$("indexMenu");
+ if(!sel)return;
+ const file=sel.value;
+ // Abre no mesmo diretório do app, preservando domínio/Render.
+ const base=location.pathname.endsWith("/")?location.pathname:location.pathname.replace(/[^/]*$/,"");
+ location.href=base+file;
+}
+
+function loadCfg(){let c=JSON.parse(localStorage.getItem("microEgiV3Cfg")||"null");if(c)for(let k of ["capital","lev","reservePct","riskPct","maxOpen","autoSec","backendUrl","ntfyTopic","ntfyPriority"])if(c[k]!==undefined&&$(k))$(k).value=c[k]}
+document.addEventListener("input",e=>{if(["capital","lev","reservePct","riskPct","maxOpen","backendUrl","ntfyTopic"].includes(e.target.id)){recalc();scheduleAuto()}});
+document.addEventListener("change",e=>{if(["autoSec","ntfyPriority"].includes(e.target.id)){saveAll(false);scheduleAuto()}});
+loadCfg();if(!events.length)addEvent("V4.6.1 pronta: CarteiraMicro.html ativa; index0 = SetupDT Light.");renderEvents();render();generateReport();scheduleAuto();setTimeout(testBackend,700);
+</script>
+</body>
+</html>
